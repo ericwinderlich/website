@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entdecke meine Apps, Tools und Musik an einem zentralen Ort.">
+  <title>Eric Winderlich | Apps & Musik</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=41">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Apple-Style Minimalist Header -->
+    <header class="header">
+      <div class="profile-area">
+        <div class="profile-header-top">
+          <div class="avatar">
+            <svg class="header-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px; color: var(--text-main); display: block;">
+              <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+            </svg>
+          </div>
+          <div class="name-bio">
+            <h1 class="profile-name">App-Portal</h1>
+            <p class="profile-bio">Lerntools & Apps.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="share-btn" class="btn btn-share" aria-label="Link kopieren">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Teilen
+        </button>
+      </div>
+    </header>
+
+    <!-- Apple-Style Navigation Bar -->
+    <nav class="filter-nav" id="filter-nav">
+      <button class="filter-btn active" data-category="all">Alle</button>
+      <button class="filter-btn" data-category="productivity">Produktivität</button>
+      <button class="filter-btn" data-category="education">Lernen</button>
+      <button class="filter-btn" data-category="music">Musik</button>
+    </nav>
+
+    <!-- Bento Grid for Apps -->
+    <main class="apps-grid bento-grid" id="apps-grid">
+      <!-- Cards rendered dynamically via app.js -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-top">
+        <p class="footer-text">Erstellt von Eric Winderlich. Alle Projekte sind Open Source.</p>
+      </div>
+      <div class="footer-bottom">
+        <span class="copyright">&copy; 2026 Eric Winderlich.</span>
+        <div class="social-links">
+          <a href="https://github.com/ericwinderlich" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <div class="social-links-wrapper">
+            <button id="mail-btn" class="social-link-btn" aria-label="E-Mail Kontakt">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </button>
+            <div id="mail-popover" class="mail-popover" aria-hidden="true">
+              <a href="mailto:ericwinderlich@gmail.com" class="popover-item" id="popover-mail-open">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Mail-Programm öffnen
+              </a>
+              <button class="popover-item" id="popover-mail-copy">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Adresse kopieren
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- AI Guide Modal -->
+  <div id="guide-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="modal-title" class="modal-title">Wie dieses Projekt entstand (KI-Guide)</h2>
+        <button class="modal-close" id="modal-close-btn" aria-label="Schließen">&times;</button>
+      </header>
+      <div class="modal-body">
+        <p>Willkommen! Dieses gesamte Web-Portal, alle verlinkten Lern- und Produktivitäts-Apps sowie die Musik von <strong>GenEric</strong> wurden unter Einsatz von künstlicher Intelligenz (KI) erschaffen. Hier erfährst du genau, welche Tools genutzt wurden und wie du dein eigenes KI-Projekt starten kannst.</p>
+        
+        <h3>1. Die Website (Dieses Bento-Portal)</h3>
+        <p>Erstellt in Kooperation mit <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="guide-link">Antigravity (Google DeepMind Gemini)</a> und <a href="https://code.claude.com/docs/de/desktop" target="_blank" rel="noopener noreferrer" class="guide-link">Claude Code</a>. Das Design basiert auf dem modernen Apple Bento-Grid-System mit HSL-abgestimmten Pastellfarben. Der Code besteht aus sauberem HTML5, CSS3 und Vanilla-JavaScript.</p>
+        
+        <h3>2. Die Web-Apps (Unterrichtsplaner & Vokabeltrainer)</h3>
+        <p>Die einzelnen Tools wie der <em>Unterrichtsplaner</em>, der <em>Vergangenheitstrainer</em> oder <em>SpanischCheck</em> wurden mit KI-Codierungspartnern (ChatGPT / Gemini) entwickelt. Die Logik wurde in HTML/JS geschrieben und anschließend völlig kostenlos über <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="guide-link">GitHub Pages</a> online gestellt.</p>
+        
+        <h3>3. Die Musik (GenEric)</h3>
+        <p>Die Beats, Melodien und Gesänge wurden mit dem KI-Musikgenerator <a href="https://suno.com/" target="_blank" rel="noopener noreferrer" class="guide-link">Suno</a> erstellt. Die Distribution auf Plattformen wie Spotify, Apple Music und YouTube Music erfolgte über den Vertriebsdienst <strong>DistroKid</strong>.</p>
+        
+        <h3>Schritt-für-Schritt: So machst du es selbst</h3>
+        <ol>
+          <li><strong>Konzept mit KI schärfen:</strong> Nutze Chatbots, um deine App-Ideen auszuarbeiten und ein klares Konzept zu erstellen.</li>
+          <li><strong>Programmieren lassen (deine eigene App/Website):</strong> Bitte KI-Assistenten (z. B. <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="guide-link">Antigravity</a> oder <a href="https://code.claude.com/docs/de/desktop" target="_blank" rel="noopener noreferrer" class="guide-link">Claude Code</a>), die HTML-, CSS- und JS-Dateien für deine eigene Website oder Web-App zu schreiben.</li>
+          <li><strong>Gratis hosten:</strong> Erstelle ein kostenloses GitHub-Konto über <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="guide-link">GitHub</a> und lade deine Dateien hoch. Aktiviere in den Einstellungen <em>GitHub Pages</em>, um deine Website online zu bringen. In Antigravity/Claude Code kannst du deinen Agenten sogar direkt bitten, die Website für dich zu hosten, indem du ihm einfach den Link zu deinem Repository gibst.</li>
+        </ol>
+        
+        <div class="prompt-container">
+          <p style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main);">Zu kompliziert? Kopiere einfach diesen Prompt und füge ihn bei deinem KI-Assistenten ein (ChatGPT, Gemini, Claude o. Ä.):</p>
+          <div class="prompt-box" id="prompt-box">
+            <span class="prompt-text">Erkläre mir in einfachen Worten, wie ich als Anfänger mit Hilfe von KI (wie Gemini oder Claude) meine eigene Website, Web-Apps (wie Vokabeltrainer) erstellen und kostenlos hosten kann. Lass uns Schritt für Schritt vorgehen: Kläre meine Fragen, hilf mir, das Thema zu verstehen, und zeig mir, wie ich mein erstes eigenes Projekt starte.</span>
+            <button class="prompt-copy-btn" id="prompt-copy-btn" title="Prompt kopieren" aria-label="Prompt kopieren">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <p style="margin-top: 1.5rem; font-weight: 500; text-align: center; color: var(--text-muted);">Fang einfach an. Mit KI an deiner Seite gibt es keine Grenzen mehr!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    Link kopiert
+  </div>
+
+  <!-- JS Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

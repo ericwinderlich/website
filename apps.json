@@ -1,0 +1,121 @@
+[
+  {
+    "id": "unterrichtsplaner",
+    "title": "Unterrichtsplaner",
+    "description": "Ein intelligentes Produktivitäts-Tool für Lehrerinnen und Lehrer zur einfachen Planung, Vorbereitung und Strukturierung von Unterrichtsstunden.",
+    "category": "productivity",
+    "status": "Produktiv",
+    "isOpenSource": true,
+    "gridSize": "large",
+    "github": "https://github.com/Unterrichtsplaner/unterrichtsplaner.github.io",
+    "links": {
+      "web": "https://unterrichtsplaner.github.io/"
+    },
+    "icon": "📚",
+    "lastUpdated": "18. Juni 2026"
+  },
+  {
+    "id": "vokabeltrainer",
+    "title": "Vokabel-Trainer",
+    "description": "Lerne und trainiere spanische Vokabeln effizient und spielerisch mit einem Karteikarten-System.",
+    "category": "education",
+    "status": "Aktiv",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "github": "https://github.com/spanisch-vokabeln/spanisch-vokabeln.github.io",
+    "links": {
+      "web": "https://spanisch-vokabeln.github.io/"
+    },
+    "icon": "🇪🇸",
+    "lastUpdated": "15. Juni 2026"
+  },
+  {
+    "id": "vergangenheitstrainer-spanisch",
+    "title": "Spanisch Vergangenheitstrainer",
+    "description": "Meistere die spanischen Vergangenheitszeiten (Indefinido und Imperfecto) mit gezielten, interaktiven Übungen.",
+    "category": "education",
+    "status": "Aktiv",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "github": "https://github.com/indefinido-imperfecto/indefinido-imperfecto.github.io",
+    "links": {
+      "web": "https://indefinido-imperfecto.github.io/"
+    },
+    "icon": "🇪🇸",
+    "lastUpdated": "12. Juni 2026"
+  },
+  {
+    "id": "spanischcheck",
+    "title": "SpanischCheck Niveauerfassung",
+    "description": "Ein Werkzeug zur Lernstandsdiagnose und Erfassung des Sprachniveaus für Spanischschüler in der 10. Klasse.",
+    "category": "education",
+    "status": "Aktiv",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "github": "https://github.com/spanischcheck/spanischcheck.github.io",
+    "links": {
+      "web": "https://spanischcheck.github.io/"
+    },
+    "icon": "🇪🇸",
+    "lastUpdated": "10. Juni 2026"
+  },
+  {
+    "id": "englischtrainer",
+    "title": "Englisch-Trainer",
+    "description": "Vokabeltrainer und Übungen für das englische Simple Past. Bietet strukturiertes Lernen im eigenen Tempo.",
+    "category": "education",
+    "status": "In Arbeit",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "github": "https://github.com/englisch-trainer/englisch-trainer.github.io",
+    "links": {
+      "web": "https://englisch-trainer.github.io/"
+    },
+    "icon": "🇬🇧",
+    "lastUpdated": "Juni 2026"
+  },
+  {
+    "id": "unterrichtsspiele",
+    "title": "Unterrichtsspiele",
+    "description": "Eine interaktive Sammlung von HTML-Spielen für den Einsatz im Spanischunterricht und zur Auflockerung von Lerneinheiten.",
+    "category": "education",
+    "status": "In Arbeit",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "github": "https://github.com/Unterrichtsspiele/unterrichtsspiele.github.io",
+    "links": {
+      "web": "https://unterrichtsspiele.github.io/"
+    },
+    "icon": "🎮",
+    "lastUpdated": "Juni 2026"
+  },
+  {
+    "id": "spotify-music",
+    "title": "Meine Musik",
+    "description": "Hör dir meine eigenen Musik-Produktionen, Beats und Tracks an. Direkt abspielbar oder über deine Lieblingsplattformen.",
+    "category": "music",
+    "status": "Release",
+    "isOpenSource": false,
+    "gridSize": "wide",
+    "youtubePlaylistId": ["s__VfPmVqTY", "9syq82SE-fE", "lQY1vMegNCA"],
+    "links": {
+      "spotify": "https://open.spotify.com/intl-de/artist/20S8HaIy1b7dlSKx0lZY3Y?si=lPJDUbHzRBK5fMIRAcfeEA",
+      "apple": "https://music.apple.com/us/artist/generic/6780991708",
+      "youtube": "https://youtube.com/channel/UCRihA8y8sXf2RmZwWOVIHPA?si=j9ExbcYEFXRvYFsT"
+    },
+    "icon": "🎵"
+  },
+  {
+    "id": "ai-guide",
+    "title": "Hinter den Kulissen (KI)",
+    "description": "Dieses gesamte Portal, die Apps und die Musik wurden mithilfe künstlicher Intelligenz (KI) erschaffen. Klicke hier für die Schritt-für-Schritt-Anleitung, wie du das selbst nachbauen kannst!",
+    "category": "education",
+    "status": "Guide",
+    "isOpenSource": true,
+    "gridSize": "normal",
+    "links": {
+      "guide": true
+    },
+    "icon": "🤖"
+  }
+]
