@@ -704,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (popoverMailCopy) {
       popoverMailCopy.addEventListener('click', () => {
-        const email = 'ericwinderlich@gmail.com';
+        const email = 'mail@ericwinderlich.de';
         navigator.clipboard.writeText(email)
           .then(() => {
             showToast('E-Mail kopiert!');
