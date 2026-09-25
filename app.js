@@ -578,7 +578,7 @@
           <li>
             <span class="route-icon">${icon('git-fork')}</span>
             <h3>Kopie anlegen</h3>
-            <p>Mit einem kostenlosen GitHub-Konto auf der Code-Seite oben rechts „Fork“ klicken. Die Kopie gehört dann dir.</p>
+            <p>Mit einem kostenlosen GitHub-Konto auf der Code-Seite oben rechts auf „Fork“ klicken. Die Kopie gehört dann dir.</p>
             <a class="btn btn-primary" href="${esc(app.github)}" target="_blank" rel="noopener">${icon('github-logo')}Code auf GitHub</a>
           </li>
           <li>
@@ -593,7 +593,7 @@
           <li>
             <span class="route-icon">${icon('arrow-up-right')}</span>
             <h3>Veröffentlichen</h3>
-            <p>Das erledigt der Agent am Ende für dich. Du kannst es auch selbst machen: im eigenen Repository unter Settings und Pages einschalten.</p>
+            <p>Das erledigt der Agent am Ende für dich. Du kannst es auch selbst machen: im eigenen Repository unter „Settings“ den Punkt „Pages“ öffnen und einschalten.</p>
           </li>
         </ol>
 
