@@ -4,6 +4,9 @@
     "title": "Unterrichtsplaner",
     "description": "Ein intelligentes Produktivitäts-Tool für Lehrerinnen und Lehrer zur einfachen Planung, Vorbereitung und Strukturierung von Unterrichtsstunden.",
     "category": "productivity",
+    "audience": [
+      "lehrkraefte"
+    ],
     "status": "Produktiv",
     "isOpenSource": true,
     "gridSize": "large",
@@ -12,13 +15,119 @@
       "web": "https://unterrichtsplaner.github.io/"
     },
     "icon": "📚",
-    "lastUpdated": "18. Juni 2026"
+    "lastUpdated": "18. Juni 2026",
+    "stack": [
+      "HTML, CSS, JavaScript",
+      "Progressive Web App (offline nutzbar)",
+      "Firebase (nur für den optionalen Sync)",
+      "Tests mit Vitest"
+    ],
+    "privacy": {
+      "summary": "Alle Daten bleiben auf deinem Gerät. Der Cloud-Sync ist freiwillig und Ende-zu-Ende-verschlüsselt.",
+      "points": [
+        "Noten, Klassen und Sitzpläne werden lokal im Browser gespeichert.",
+        "Wer den Sync einschaltet, verschlüsselt die Daten vorher auf dem Gerät (AES-256). In der Cloud (Google Firebase) liegt nur ein Block, den ohne dein Passwort niemand lesen kann, auch ich nicht.",
+        "Kein Tracking, keine Werbung.",
+        "Beim Öffnen lädt die App Schriftarten von Google Fonts. Dabei sieht Google deine IP-Adresse."
+      ],
+      "badges": [
+        [
+          "laptop",
+          "Daten bleiben auf dem Gerät"
+        ],
+        [
+          "lock-key",
+          "Sync Ende-zu-Ende-verschlüsselt"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ]
+    },
+    "story": {
+      "problem": "Planer-Apps gibt es viele. Die guten kosten Geld und keine passte wirklich zu meinem Unterricht. Also habe ich mir meinen eigenen gebaut: mit genau den Funktionen für meinen Schulalltag und ohne Abo.",
+      "prompt": "Baue mir einen Unterrichtsplaner für Lehrkräfte als Web-App, die komplett im Browser läuft und auch offline funktioniert (Progressive Web App). Reines HTML, CSS und JavaScript, kein eigener Server, keine Anmeldung nötig.\n\nFunktionen:\n1. Stundenplan als Wochenansicht mit Unterrichtsblöcken und einstellbaren Uhrzeiten, vor- und zurückblättern.\n2. Klassen mit Schülerlisten anlegen.\n3. Noten pro Schüler:in eintragen, mit einstellbarer Gewichtung, Notenübersicht und Export als CSV.\n4. Anwesenheit und Hausaufgaben erfassen.\n5. Einen Sitzplan pro Klasse.\n6. Ein Dashboard mit den Stunden von heute.\n\nAlle Daten werden nur lokal im Browser gespeichert, mit Export und Import als Backup-Datei. Schülerdaten dürfen das Gerät nicht verlassen. Ruhiges, übersichtliches Design mit Dark Mode.\n\nGeh Schritt für Schritt vor: zuerst Stundenplan und Klassen, dann Noten, dann der Rest. Frag mich vorher, welche Funktionen ich am dringendsten brauche."
+    },
+    "highlights": [
+      [
+        "calendar-blank",
+        "Stundenplan für die ganze Woche"
+      ],
+      [
+        "chart-bar",
+        "Noten, Mitarbeit und Anwesenheit"
+      ],
+      [
+        "armchair",
+        "Sitzplan pro Klasse"
+      ],
+      [
+        "lock-key",
+        "Offline nutzbar, Sync verschlüsselt"
+      ]
+    ],
+    "hero": {
+      "desktop": "stundenplan",
+      "phone": "handy"
+    },
+    "tour": [
+      {
+        "layout": "wide",
+        "device": "desktop",
+        "images": [
+          "stundenplan"
+        ],
+        "title": "Die ganze Woche auf einen Blick",
+        "text": "Jede Klasse hat ihre Farbe. Ein Klick auf eine Stunde öffnet Notizen, Hausaufgaben und Tests für genau diesen Tag."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "heute"
+        ],
+        "title": "Was steht heute an?",
+        "text": "Das Dashboard zeigt die Stunden des Tages und die nächste Stunde. Warnungen, zum Beispiel bei vielen Fehlstunden, landen auch hier."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "noten"
+        ],
+        "title": "Noten ohne Excel",
+        "text": "Schriftlich und mündlich getrennt, mit eigener Gewichtung und Tendenzen wie 2- oder 3+. Den Schnitt rechnet die App."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "sitzplan"
+        ],
+        "title": "Sitzplan mit Extras",
+        "text": "Der Sitzplan jeder Klasse, dazu Timer, Stoppuhr, Zufallsauswahl und Gruppenbildung direkt im Unterricht."
+      },
+      {
+        "layout": "duo",
+        "device": "mixed",
+        "images": [
+          "klassen",
+          "handy"
+        ],
+        "title": "Alle Klassen, auch am Handy",
+        "text": "Jede Klasse zeigt Schülerzahl und Notenschnitt. Auf dem Handy funktioniert der Planer genauso."
+      }
+    ]
   },
   {
     "id": "vokabeltrainer",
     "title": "Vokabel-Trainer",
     "description": "Lerne und trainiere spanische Vokabeln effizient und spielerisch mit einem Karteikarten-System.",
     "category": "education",
+    "audience": [
+      "schueler"
+    ],
     "status": "Aktiv",
     "isOpenSource": true,
     "gridSize": "normal",
@@ -27,13 +136,111 @@
       "web": "https://spanisch-vokabeln.github.io/"
     },
     "icon": "🇪🇸",
-    "lastUpdated": "15. Juni 2026"
+    "lastUpdated": "15. Juni 2026",
+    "stack": [
+      "React",
+      "Vite",
+      "Tailwind CSS"
+    ],
+    "privacy": {
+      "summary": "Kein Konto, keine Anmeldung. Der Lernfortschritt bleibt im Browser.",
+      "points": [
+        "Fortschritt und Einstellungen werden nur lokal im Browser gespeichert.",
+        "Beim Öffnen werden keine fremden Server kontaktiert.",
+        "Kein Tracking, keine Werbung."
+      ],
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Kein Konto nötig"
+        ],
+        [
+          "laptop",
+          "Fortschritt bleibt im Browser"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ]
+    },
+    "story": {
+      "problem": "Vokabeln lernen war schon zu meiner Schulzeit eher Pflicht als Spaß. Apps wie Duolingo helfen im Unterricht wenig, weil dort nicht die Wörter aus dem Schulbuch vorkommen. Dieser Trainer fragt genau die Vokabeln meiner Klassen ab und macht daraus Karteikarten, Quiz und Spiele.",
+      "prompt": "Baue mir einen Spanisch-Vokabeltrainer als Web-App für Schüler:innen der Klassen 7 bis 12. Die Vokabeln kommen aus unserem Schulbuch und sind nach Klassenstufe und Lektion sortiert. Ich gebe dir die Listen als Tabelle.\n\nFunktionen:\n1. Klassenstufe und Lektionen auswählen.\n2. Üben mit Karteikarten, Multiple-Choice-Quiz und Zuordnungsspielen.\n3. Einen Testmodus, den ich auch als Test ausdrucken kann.\n4. Schwierige Wörter werden gesammelt und öfter abgefragt.\n5. Der Lernfortschritt wird nur lokal im Browser gespeichert, keine Anmeldung.\n\nModern, farbig und fürs Handy gemacht, weil die meisten unterwegs lernen. Technik: React, Vite und Tailwind CSS, Veröffentlichung kostenlos über GitHub Pages. Frag mich zuerst nach Lehrwerk und Lektionen."
+    },
+    "highlights": [
+      [
+        "book-open",
+        "Schulbuch-Vokabeln, Klasse 7 bis 12"
+      ],
+      [
+        "cards",
+        "Karteikarten und Quiz"
+      ],
+      [
+        "game-controller",
+        "Lernspiele"
+      ],
+      [
+        "printer",
+        "Test zum Ausdrucken"
+      ]
+    ],
+    "hero": {
+      "desktop": null,
+      "phone": "start"
+    },
+    "tour": [
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "modi",
+          "karte",
+          "karte-offen"
+        ],
+        "title": "Karteikarten, die mitdenken",
+        "text": "Aufdecken, dann ehrlich sagen: gewusst oder noch nicht. Schwierige Wörter kommen öfter dran."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "quiz",
+          "zuordnung"
+        ],
+        "title": "Quiz und Zuordnung",
+        "text": "Vier Antworten zur Auswahl oder Paare verbinden. Abwechslung, damit Lernen nicht langweilig wird."
+      },
+      {
+        "layout": "split",
+        "device": "phone",
+        "images": [
+          "spiele"
+        ],
+        "title": "Spiele mit Highscore",
+        "text": "Mit drei Leben, gegen die Uhr oder als Serie. Die eigenen Rekorde spornen an."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "test",
+          "liste"
+        ],
+        "title": "Test und Wortliste",
+        "text": "Einen Vokabeltest mit Notenschlüssel machen oder als Klassentest ausdrucken. Die Wortliste lässt sich durchsuchen."
+      }
+    ]
   },
   {
     "id": "vergangenheitstrainer-spanisch",
     "title": "Spanisch Vergangenheitstrainer",
     "description": "Meistere die spanischen Vergangenheitszeiten (Indefinido und Imperfecto) mit gezielten, interaktiven Übungen.",
     "category": "education",
+    "audience": [
+      "schueler"
+    ],
     "status": "Aktiv",
     "isOpenSource": true,
     "gridSize": "normal",
@@ -42,28 +249,101 @@
       "web": "https://indefinido-imperfecto.github.io/"
     },
     "icon": "🇪🇸",
-    "lastUpdated": "12. Juni 2026"
-  },
-  {
-    "id": "spanischcheck",
-    "title": "SpanischCheck Niveauerfassung",
-    "description": "Ein Werkzeug zur Lernstandsdiagnose und Erfassung des Sprachniveaus für Spanischschüler in der 10. Klasse.",
-    "category": "education",
-    "status": "Aktiv",
-    "isOpenSource": true,
-    "gridSize": "normal",
-    "github": "https://github.com/spanischcheck/spanischcheck.github.io",
-    "links": {
-      "web": "https://spanischcheck.github.io/"
+    "lastUpdated": "12. Juni 2026",
+    "stack": [
+      "HTML, CSS, JavaScript",
+      "Firebase (optionales Konto und Rangliste)"
+    ],
+    "privacy": {
+      "summary": "Ohne Anmeldung bleibt alles im Browser. Das Konto für die Rangliste ist freiwillig.",
+      "points": [
+        "Ohne Konto werden Punkte und Fortschritt nur lokal im Browser gespeichert.",
+        "Wer ein Konto anlegt, braucht nur einen Benutzernamen und eine 6-stellige PIN, keine E-Mail-Adresse. Benutzername, Punkte und Fehlerstatistik werden dann bei Google Firebase gespeichert. Benutzername und Punkte erscheinen in der Rangliste.",
+        "Beim Öffnen lädt die App Schriftarten und Icons von Google Fonts und cdnjs sowie Firebase-Code von Google.",
+        "Kein Tracking, keine Werbung."
+      ],
+      "badges": [
+        [
+          "laptop",
+          "Ohne Konto bleibt alles lokal"
+        ],
+        [
+          "user-circle",
+          "Konto nur für die Rangliste"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ]
     },
-    "icon": "🇪🇸",
-    "lastUpdated": "10. Juni 2026"
+    "story": {
+      "problem": "Indefinido oder Imperfecto? An dieser Frage verzweifeln fast alle, die Spanisch lernen. Im Studium hätte ich mir genau so ein Übungstool gewünscht. Jetzt können meine Schüler:innen gezielt üben und bekommen nach jeder Antwort eine Erklärung.",
+      "prompt": "Baue mir eine Übungs-App für den Unterschied zwischen Pretérito Indefinido und Imperfecto im Spanischen, für Schüler:innen. Reines HTML, CSS und JavaScript, keine Anmeldung nötig.\n\nDrei Übungsmodi:\n1. Formen bilden: Verb, Person und Zeitform sind vorgegeben, die konjugierte Form wird eingetippt.\n2. Formen erkennen: Zu einer konjugierten Form die Zeitform bestimmen.\n3. Lückentexte: Im Satzzusammenhang entscheiden, welche Zeitform passt, mit Signalwörtern wie ayer, mientras oder de repente.\n\nWichtig: Akzentfehler (hable statt hablé) sollen als eigener Hinweis erkannt werden und bei jedem Fehler gibt es eine kurze Erklärung, warum. Dazu ein Spickzettel mit den Regeln. Verben nach Schwierigkeit sortiert: regelmäßig, mit Schreibbesonderheiten (-car, -gar, -zar), unregelmäßig. Punkte und eine Lernserie zur Motivation, Fortschritt nur lokal im Browser."
+    },
+    "highlights": [
+      [
+        "pencil-simple",
+        "Formen bilden und erkennen"
+      ],
+      [
+        "text-aa",
+        "Lückentexte mit Signalwörtern"
+      ],
+      [
+        "lightbulb",
+        "Erklärung bei jeder Antwort"
+      ],
+      [
+        "note",
+        "Spickzettel mit den Regeln"
+      ]
+    ],
+    "hero": {
+      "desktop": "desktop",
+      "phone": "start"
+    },
+    "tour": [
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "erkennen",
+          "bilden",
+          "zeitform"
+        ],
+        "title": "Fünf Übungsmodi",
+        "text": "Formen erkennen, selbst bilden oder im Satz die richtige Zeitform wählen. Dazu Lückentexte und Signalwörter."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "feedback",
+          "signal"
+        ],
+        "title": "Erklärung bei jeder Antwort",
+        "text": "Nach jeder Aufgabe steht da, warum es Indefinido oder Imperfecto ist, mit Übersetzung des Satzes."
+      },
+      {
+        "layout": "split",
+        "device": "phone",
+        "images": [
+          "spickzettel"
+        ],
+        "title": "Der Spickzettel",
+        "text": "Die Regeln kurz und mit Beispielen: einmalige Handlungen, neu eintretende Ereignisse, Beschreibungen."
+      }
+    ]
   },
   {
     "id": "englischtrainer",
     "title": "Englisch-Trainer",
     "description": "Vokabeltrainer und Übungen für das englische Simple Past. Bietet strukturiertes Lernen im eigenen Tempo.",
     "category": "education",
+    "audience": [
+      "schueler"
+    ],
     "status": "In Arbeit",
     "isOpenSource": true,
     "gridSize": "normal",
@@ -72,13 +352,112 @@
       "web": "https://englisch-trainer.github.io/"
     },
     "icon": "🇬🇧",
-    "lastUpdated": "Juni 2026"
+    "lastUpdated": "Juni 2026",
+    "stack": [
+      "React",
+      "Vite",
+      "Tailwind CSS"
+    ],
+    "privacy": {
+      "summary": "Kein Konto, keine Anmeldung. Der Lernfortschritt bleibt im Browser.",
+      "points": [
+        "Fortschritt und Einstellungen werden nur lokal im Browser gespeichert.",
+        "Beim Öffnen werden keine fremden Server kontaktiert.",
+        "Kein Tracking, keine Werbung."
+      ],
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Kein Konto nötig"
+        ],
+        [
+          "laptop",
+          "Fortschritt bleibt im Browser"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ]
+    },
+    "story": {
+      "problem": "Was im Spanischunterricht funktioniert, sollte es auch für Englisch geben. Der Englisch-Trainer nutzt dasselbe Konzept, mit den Vokabeln aus den Units und einer eigenen Übung für die unregelmäßigen Verben im Simple Past.",
+      "prompt": "Baue mir einen Englisch-Vokabeltrainer als Web-App für Schüler:innen. Die Vokabeln kommen aus unserem Schulbuch und sind nach Units sortiert, dazu eine eigene Liste mit unregelmäßigen Verben im Simple Past. Ich gebe dir die Listen als Tabelle.\n\nFunktionen:\n1. Units auswählen, auch mehrere auf einmal.\n2. Vokabeln durchblättern.\n3. Üben mit Karteikarten, Quiz und Zuordnungsspielen.\n4. Schwierige Wörter werden gesammelt und öfter abgefragt.\n5. Der Lernfortschritt wird nur lokal im Browser gespeichert, keine Anmeldung.\n\nModern, farbig und fürs Handy gemacht. Technik: React, Vite und Tailwind CSS, Veröffentlichung kostenlos über GitHub Pages."
+    },
+    "highlights": [
+      [
+        "book-open",
+        "Vokabeln aus den Units"
+      ],
+      [
+        "arrows-clockwise",
+        "Unregelmäßige Verben im Simple Past"
+      ],
+      [
+        "cards",
+        "Karteikarten und Quiz"
+      ],
+      [
+        "game-controller",
+        "Lernspiele"
+      ]
+    ],
+    "hero": {
+      "desktop": null,
+      "phone": "start"
+    },
+    "tour": [
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "modi",
+          "karte",
+          "karte-offen"
+        ],
+        "title": "Auch die unregelmäßigen Verben",
+        "text": "Infinitiv sehen, Simple Past aufdecken, ehrlich bewerten. Schwierige Wörter kommen öfter dran."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "quiz",
+          "zuordnung"
+        ],
+        "title": "Quiz und Zuordnung",
+        "text": "Vier Antworten zur Auswahl oder Paare verbinden. Abwechslung, damit Lernen nicht langweilig wird."
+      },
+      {
+        "layout": "split",
+        "device": "phone",
+        "images": [
+          "spiele"
+        ],
+        "title": "Spiele mit Highscore",
+        "text": "Survival, Time Attack oder Streak. Die eigenen Rekorde spornen an."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "test",
+          "liste"
+        ],
+        "title": "Test und Wortliste",
+        "text": "Einen Vokabeltest mit Notenschlüssel machen oder als Klassentest ausdrucken. Die Wortliste lässt sich durchsuchen."
+      }
+    ]
   },
   {
     "id": "unterrichtsspiele",
     "title": "Unterrichtsspiele",
     "description": "Eine interaktive Sammlung von HTML-Spielen für den Einsatz im Spanischunterricht und zur Auflockerung von Lerneinheiten.",
     "category": "education",
+    "audience": [
+      "schueler",
+      "lehrkraefte"
+    ],
     "status": "In Arbeit",
     "isOpenSource": true,
     "gridSize": "normal",
@@ -87,35 +466,97 @@
       "web": "https://unterrichtsspiele.github.io/"
     },
     "icon": "🎮",
-    "lastUpdated": "Juni 2026"
-  },
-  {
-    "id": "spotify-music",
-    "title": "Meine Musik",
-    "description": "Hör dir meine eigenen Musik-Produktionen, Beats und Tracks an. Direkt abspielbar oder über deine Lieblingsplattformen.",
-    "category": "music",
-    "status": "Release",
-    "isOpenSource": false,
-    "gridSize": "wide",
-    "youtubePlaylistId": ["s__VfPmVqTY", "9syq82SE-fE", "lQY1vMegNCA"],
-    "links": {
-      "spotify": "https://open.spotify.com/intl-de/artist/20S8HaIy1b7dlSKx0lZY3Y?si=lPJDUbHzRBK5fMIRAcfeEA",
-      "apple": "https://music.apple.com/us/artist/generic/6780991708",
-      "youtube": "https://youtube.com/channel/UCRihA8y8sXf2RmZwWOVIHPA?si=j9ExbcYEFXRvYFsT"
+    "lastUpdated": "Juni 2026",
+    "stack": [
+      "React",
+      "Vite",
+      "einzelne HTML-Spiele"
+    ],
+    "privacy": {
+      "summary": "Kein Konto, keine Anmeldung, es wird nichts gespeichert.",
+      "points": [
+        "Die Startseite speichert nichts und kontaktiert keine fremden Server.",
+        "Einzelne Spiele laden Bibliotheken von cdnjs (Cloudflare).",
+        "Kein Tracking, keine Werbung."
+      ],
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Kein Konto nötig"
+        ],
+        [
+          "prohibit",
+          "Speichert nichts"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ]
     },
-    "icon": "🎵"
-  },
-  {
-    "id": "ai-guide",
-    "title": "Hinter den Kulissen (KI)",
-    "description": "Dieses gesamte Portal, die Apps und die Musik wurden mithilfe künstlicher Intelligenz (KI) erschaffen. Klicke hier für die Schritt-für-Schritt-Anleitung, wie du das selbst nachbauen kannst!",
-    "category": "education",
-    "status": "Guide",
-    "isOpenSource": true,
-    "gridSize": "normal",
-    "links": {
-      "guide": true
+    "story": {
+      "problem": "Kleine Lernspiele wie Memory oder Lückentexte setze ich gern im Unterricht ein. Sie jedes Mal einzeln auf Moodle hochzuladen, war mir aber zu umständlich. Jetzt liegen alle auf einer Seite: Link oder QR-Code teilen und die Klasse kann direkt loslegen.",
+      "prompt": "Baue mir eine Startseite für Lernspiele, die ich im Unterricht einsetze. Ich habe mehrere einzelne HTML-Spiele, zum Beispiel Memory, Schiffe versenken und Lückentexte.\n\nDie Seite soll:\n1. Alle Spiele als Karten anzeigen.\n2. Jedes Spiel mit einem Klick im Browser öffnen, wahlweise in einem neuen Fenster für den Beamer.\n3. Neue Spiele automatisch aufnehmen, wenn ich eine HTML-Datei in einen Ordner lege.\n\nKeine Anmeldung, es wird nichts gespeichert. Veröffentlichung kostenlos über GitHub Pages, damit meine Schüler:innen per Link oder QR-Code direkt reinkommen. Erklär mir auch, wie ich später ein neues Spiel hinzufüge."
     },
-    "icon": "🤖"
+    "highlights": [
+      [
+        "puzzle-piece",
+        "Memory, Schiffe versenken, Lückentexte"
+      ],
+      [
+        "cursor-click",
+        "Ein Klick, kein Login"
+      ],
+      [
+        "projector-screen",
+        "Neues Fenster für den Beamer"
+      ],
+      [
+        "folder-plus",
+        "Neue Spiele einfach dazulegen"
+      ]
+    ],
+    "hero": {
+      "desktop": "launcher",
+      "phone": "handy"
+    },
+    "tour": [
+      {
+        "layout": "wide",
+        "device": "desktop",
+        "images": [
+          "launcher"
+        ],
+        "title": "Alle Spiele auf einer Seite",
+        "text": "Ein Klick öffnet das Spiel, auf Wunsch im eigenen Fenster für den Beamer."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "memory"
+        ],
+        "title": "Memory",
+        "text": "Wörter und Übersetzungen als Paare finden, passend zum aktuellen Kapitel."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "schiffe"
+        ],
+        "title": "Schiffe versenken mit Verben",
+        "text": "Das Spielfeld besteht aus Verben und Personen. So wird aus Schiffe versenken eine Konjugationsübung."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "lueckentext"
+        ],
+        "title": "Lückentexte",
+        "text": "Verben in der richtigen Form einsetzen und direkt überprüfen."
+      }
+    ]
   }
 ]
