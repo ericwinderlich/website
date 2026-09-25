@@ -857,17 +857,23 @@ p { text-wrap: pretty; }
 
 /* ---------- App-Karten: Aktionen ---------- */
 
+/* Beide Buttons immer exakt gleich breit: zwei gleiche Spalten, Breite richtet sich nach dem breiteren */
 .app-actions {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin-left: auto;
+}
+/* In den schmalen Seitenkarten übereinander, aber so breit wie überall sonst */
+@media (min-width: 861px) {
+  .slot-side .app-actions { grid-template-columns: minmax(0, 1fr); width: fit-content; margin-left: 0; }
 }
 .app-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
   height: 38px;
   padding: 0 14px;

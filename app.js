@@ -329,7 +329,7 @@
           <div class="app-meta">
             ${stand ? `<span class="app-updated">Stand: ${esc(stand)}</span>` : ''}
             <div class="app-actions">
-              <a class="app-btn app-btn-open" href="${esc(url)}" target="_blank" rel="noopener">App öffnen</a>
+              <a class="app-btn app-btn-open" href="${esc(url)}" target="_blank" rel="noopener">${icon('arrow-up-right')}App öffnen</a>
               <a class="app-btn" href="${detail}#nachbauen">${icon('github-logo')}Nachbauen</a>
             </div>
           </div>
