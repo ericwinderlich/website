@@ -1553,6 +1553,12 @@ details.more summary:hover { color: var(--ink); }
   .apps .section-title, .making .section-title { text-align: center; }
   .apps .container > .tabs { display: flex; width: fit-content; margin-inline: auto; }
   .wip-heading { text-align: center; }
+  .app-body { text-align: center; }
+  .app-title { justify-content: center; }
+  .app-title .app-arrow { display: none; }
+  .app-desc { margin-inline: auto; }
+  .app-meta { flex-direction: column; justify-content: center; gap: 14px; }
+  .app-actions { margin-inline: auto; }
   .diy h3, .prompt-label, .diy-lead { text-align: center; }
   .diy-lead { margin-inline: auto; }
   .diy .prompt .btn { display: flex; width: fit-content; margin-inline: auto; }
