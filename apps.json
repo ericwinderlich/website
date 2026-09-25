@@ -46,7 +46,7 @@
       ]
     },
     "story": {
-      "problem": "Planer-Apps gibt es viele. Die guten kosten aber Geld und keine konnte genau das, was ich im Unterricht brauche. Deshalb habe ich mir meinen eigenen gebaut. Er kann alles, was mir gefehlt hat. Und er kostet nichts.",
+      "problem": "Planer-Apps gibt es viele. Die guten kosten aber Geld und keine konnte genau das, was ich im Unterricht brauche. Deshalb habe ich mir meinen eigenen Planer gebaut. Er kann alles, was mir gefehlt hat. Und er kostet nichts.",
       "prompt": "Baue mir einen Unterrichtsplaner für Lehrkräfte als Web-App, die komplett im Browser läuft und auch offline funktioniert (Progressive Web App). Reines HTML, CSS und JavaScript, kein eigener Server, keine Anmeldung nötig.\n\nFunktionen:\n1. Stundenplan als Wochenansicht mit Unterrichtsblöcken und einstellbaren Uhrzeiten, vor- und zurückblättern.\n2. Klassen mit Schülerlisten anlegen.\n3. Noten pro Schüler:in eintragen, mit einstellbarer Gewichtung, Notenübersicht und Export als CSV.\n4. Anwesenheit und Hausaufgaben erfassen.\n5. Einen Sitzplan pro Klasse.\n6. Ein Dashboard mit den Stunden von heute.\n\nAlle Daten werden nur lokal im Browser gespeichert, mit Export und Import als Backup-Datei. Schülerdaten dürfen das Gerät nicht verlassen. Ruhiges, übersichtliches Design mit Dark Mode.\n\nGeh Schritt für Schritt vor: zuerst Stundenplan und Klassen, dann Noten, dann der Rest. Frag mich vorher, welche Funktionen ich am dringendsten brauche."
     },
     "highlights": [
