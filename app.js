@@ -565,6 +565,27 @@
         ${tourHTML(app)}
       </section>` : ''}
 
+      ${app.videos && app.videos.items && app.videos.items.length ? `
+      <section class="detail-section container" aria-labelledby="videos-title">
+        <h2 class="section-title" id="videos-title">Die Videos</h2>
+        ${app.videos.lead ? `<p class="remix-lead">${esc(app.videos.lead)}</p>` : ''}
+        <div class="videos">
+          ${app.videos.items.map((vid) => `
+            <a class="video-card reveal" href="https://www.youtube.com/watch?v=${encodeURIComponent(vid.youtube)}" target="_blank" rel="noopener">
+              <span class="video-thumb">
+                <img src="/img/videos/${esc(vid.youtube)}.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Vorschaubild: ${esc(vid.title)}">
+                <span class="video-play" aria-hidden="true">${icon('play')}</span>
+              </span>
+              <span class="video-text">
+                <strong>${esc(vid.title)}</strong>
+                <span>${esc(vid.text)}</span>
+                <span class="video-yt">Auf YouTube ansehen ${icon('arrow-up-right')}</span>
+              </span>
+            </a>`).join('')}
+        </div>
+        <p class="video-credit">Video und Schnitt: Eric Winderlich</p>
+      </section>` : ''}
+
       ${story.problem ? `
       <section class="detail-section container" aria-labelledby="story-title">
         <h2 class="visually-hidden" id="story-title">Warum es die App gibt</h2>

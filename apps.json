@@ -886,6 +886,21 @@
     },
     "story": {
       "problem": "Kreativpotential Schule brauchte eine neue Website. Also habe ich die Plattform von Grund auf neu gebaut: mit Projektideen, Ausflugszielen und Workshops, die Lehrkräfte selbst einreichen können."
+    },
+    "videos": {
+      "lead": "Die Videos zu KreaS habe ich selbst gemacht: Konzept, Bildschirmaufnahmen, Animation und Schnitt. Animiert ist alles mit Remotion, also programmiert statt von Hand. Die Website im Video ist die echte.",
+      "items": [
+        {
+          "youtube": "vjD69MVBMwQ",
+          "title": "Der Rundgang",
+          "text": "Ein Erklärvideo für Lehrkräfte: Projektideen finden, Ausflüge planen, Förderung beantragen und eigene Beiträge einreichen."
+        },
+        {
+          "youtube": "twFm5dcbsk0",
+          "title": "Das ist KreaS!",
+          "text": "Ein Song über KreaS als Lyric-Video, mit einer Wand aus über 200 Projektfotos. Den Songtext habe ich geschrieben, die Musik ist mit KI (Suno) entstanden."
+        }
+      ]
     }
   },
   {

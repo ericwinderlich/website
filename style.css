@@ -1628,3 +1628,25 @@ details.more summary:hover { color: var(--ink); }
   .section-lead { text-align: center; margin-inline: auto; }
   .detail-partner, .privacy-link { text-align: center; }
 }
+
+/* Videos auf Projektseiten: nur Verlinkung zu YouTube, Vorschaubilder liegen lokal */
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.video-card { display: grid; gap: 14px; text-decoration: none; color: inherit; }
+.video-thumb { position: relative; display: block; border-radius: var(--radius-frame); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface-2); }
+.video-thumb img { width: 100%; height: auto; transition: transform 0.8s var(--ease); }
+.video-card:hover .video-thumb img { transform: scale(1.02); }
+.video-play { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--red); color: var(--on-red); box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.45); transition: transform 0.35s var(--ease); }
+.video-play .icon { width: 30px; height: 30px; margin-left: 4px; }
+.video-card:hover .video-play { transform: scale(1.08); }
+.video-text { display: grid; gap: 6px; }
+.video-text strong { font-size: 1.3rem; letter-spacing: -0.015em; }
+.video-text > span { color: var(--muted); }
+.video-yt { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--ink) !important; }
+.video-yt .icon { width: 1em; height: 1em; }
+.video-card:hover .video-yt { color: var(--red-ink) !important; }
+.video-credit { margin: 24px 0 0; font-weight: 600; color: var(--red-ink); }
+@media (max-width: 760px) {
+  .videos { grid-template-columns: 1fr; }
+  .video-text, .video-credit { text-align: center; }
+  .video-yt { justify-content: center; }
+}
