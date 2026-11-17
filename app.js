@@ -571,18 +571,19 @@
         ${app.videos.lead ? `<p class="remix-lead">${esc(app.videos.lead)}</p>` : ''}
         <div class="videos">
           ${app.videos.items.map((vid) => `
-            <a class="video-card reveal" href="https://www.youtube.com/watch?v=${encodeURIComponent(vid.youtube)}" target="_blank" rel="noopener">
-              <span class="video-thumb">
+            <div class="video-card reveal">
+              <div class="video-thumb" data-youtube="${esc(vid.youtube)}" data-title="${esc(vid.title)}">
                 <img src="/img/videos/${esc(vid.youtube)}.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Vorschaubild: ${esc(vid.title)}">
-                <span class="video-play" aria-hidden="true">${icon('play')}</span>
-              </span>
-              <span class="video-text">
+                <button class="video-play" type="button" aria-label="${esc(vid.title)} hier abspielen">${icon('play')}</button>
+              </div>
+              <div class="video-text">
                 <strong>${esc(vid.title)}</strong>
                 <span>${esc(vid.text)}</span>
-                <span class="video-yt">Auf YouTube ansehen ${icon('arrow-up-right')}</span>
-              </span>
-            </a>`).join('')}
+                <a class="video-yt" href="https://www.youtube.com/watch?v=${encodeURIComponent(vid.youtube)}" target="_blank" rel="noopener">Auf YouTube ansehen ${icon('arrow-up-right')}</a>
+              </div>
+            </div>`).join('')}
         </div>
+        <p class="video-note">Beim Abspielen wird das Video von YouTube geladen. Dabei erhält Google deine IP-Adresse. Mehr dazu unter <a href="/datenschutz.html">Datenschutz</a>.</p>
         <p class="video-credit">Video und Schnitt: Eric Winderlich</p>
       </section>` : ''}
 
@@ -652,6 +653,25 @@
       </nav>`;
   }
 
+  // Zwei-Klick-Lösung: Vorschaubild liegt lokal, der YouTube-Player lädt erst nach dem Klick
+  function initVideos(scope) {
+    scope.querySelectorAll('.video-thumb[data-youtube]').forEach((box) => {
+      const btn = box.querySelector('.video-play');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(box.dataset.youtube) + '?autoplay=1&rel=0&playsinline=1';
+        frame.title = box.dataset.title + ' (YouTube)';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        box.classList.add('is-playing');
+        box.replaceChildren(frame);
+        frame.focus();
+      });
+    });
+  }
+
   function initDetail() {
     const main = $('#detail');
     const id = new URLSearchParams(location.search).get('id');
@@ -680,6 +700,7 @@
         main.innerHTML = detailHTML(app, repos, prev, next);
         main.setAttribute('aria-busy', 'false');
         observeReveal(main);
+        initVideos(main);
         main.querySelectorAll('[data-copy]').forEach((b) => {
           b.addEventListener('click', () => copyText($(b.dataset.copy).textContent.trim(), 'Prompt kopiert'));
         });
