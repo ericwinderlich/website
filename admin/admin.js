@@ -607,18 +607,38 @@
       }
       const { t7, t30, hits, refs } = data;
       const num = (t) => Number((t && (t.total_unique ?? t.total)) || 0).toLocaleString('de-DE');
-      const rows = (list, name, val) => (list || []).map((x) => `<tr><td>${esc(name(x))}</td><td class="a-num">${esc(val(x))}</td></tr>`).join('') || '<tr><td colspan="2">Noch keine Daten.</td></tr>';
+      // Seiten lesbar benennen: Startseite, App-Seiten mit App-Namen, sonst der Pfad
+      const pageName = (x) => {
+        const path = String(x.path || '');
+        if (path === '/' || path === '/index.html') return 'Startseite';
+        const m = path.match(/[?&]id=([^&#]+)/);
+        if (m) {
+          const app = state.apps.find((a) => a.id === decodeURIComponent(m[1]));
+          if (app) return app.title;
+        }
+        if (/datenschutz/.test(path)) return 'Datenschutz';
+        if (/404/.test(path)) return 'Seite nicht gefunden (404)';
+        return path || String(x.title || '').replace(/\s*\|\s*Eric Winderlich\s*/g, '').replace(/^Eric Winderlich\s*\|\s*/, '');
+      };
+      const refName = (x) => (x.name ? String(x.name).replace(/^https?:\/\//, '').replace(/\/$/, '') : 'Direkt aufgerufen');
+      const list = (items, name) => items && items.length
+        ? '<ol class="a-rank">' + items.map((x) => `<li><span>${esc(name(x))}</span><strong>${esc(Number(x.count || 0).toLocaleString('de-DE'))}</strong></li>`).join('') + '</ol>'
+        : '<p class="a-empty">Noch keine Daten.</p>';
       const stamp = new Date(data.at).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
       body.innerHTML = `
         <div class="a-kpis">
-          <div><span>Besuche, 7 Tage</span><strong>${num(t7)}</strong></div>
-          <div><span>Besuche, 30 Tage</span><strong>${num(t30)}</strong></div>
+          <div><span>Besucher, letzte 7 Tage</span><strong>${num(t7)}</strong></div>
+          <div><span>Besucher, letzte 30 Tage</span><strong>${num(t30)}</strong></div>
         </div>
         <div class="a-cols">
-          <table class="a-table"><caption>Beliebteste Seiten (30 Tage)</caption><tbody>${rows(hits.hits, (x) => x.title || x.path, (x) => x.count)}</tbody></table>
-          <table class="a-table"><caption>Woher die Besucher kommen</caption><tbody>${rows(refs.stats, (x) => x.name || '(direkt)', (x) => x.count)}</tbody></table>
+          <section class="a-box"><h2>Beliebteste Seiten</h2><p class="a-sub">letzte 30 Tage</p>${list(hits.hits, pageName)}</section>
+          <section class="a-box"><h2>Woher die Besucher kommen</h2><p class="a-sub">letzte 30 Tage</p>${list(refs.stats, refName)}</section>
         </div>
-        <p class="a-note">Stand ${stamp} Uhr. <button class="a-link" type="button" id="btn-stats-reload">Neu laden</button> · <a href="${dash}" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter</a></p>`;
+        <div class="a-statsfoot">
+          <span>Stand ${stamp} Uhr</span>
+          <button class="a-btn" type="button" id="btn-stats-reload">Neu laden</button>
+          <a class="a-btn" href="${dash}" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter</a>
+        </div>`;
     } catch (e) {
       const why = e.status === 401 || e.status === 403
         ? 'GoatCounter lehnt den API-Schlüssel ab. Bitte unter Einstellungen prüfen, ob er vollständig kopiert ist.'
