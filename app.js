@@ -584,7 +584,7 @@
             </div>`).join('')}
         </div>
         <p class="video-note">Beim Abspielen wird das Video von YouTube geladen. Dabei erhält Google deine IP-Adresse. Mehr dazu unter <a href="/datenschutz.html">Datenschutz</a>.</p>
-        <p class="video-credit">Video und Schnitt: Eric Winderlich</p>
+        ${app.videos.credit ? `<p class="video-credit">${esc(app.videos.credit)}</p>` : ''}
       </section>` : ''}
 
       ${story.problem ? `

@@ -312,6 +312,7 @@
     const hl = (app.highlights || []).concat([['check', ''], ['check', ''], ['check', ''], ['check', '']]).slice(0, 4);
     const badges = (p.badges || []).concat([['check', ''], ['check', ''], ['check', '']]).slice(0, 3);
     const imgs = imagesOf(app);
+    const vids = app.videos || { items: [] };
     const opt = (list, val) => list.map((n) => `<option value="${esc(n)}" ${n === val ? 'selected' : ''}>${esc(n || '(keins)')}</option>`).join('');
     $('#edit-preview').href = '/app.html?id=' + encodeURIComponent(app.id);
 
@@ -403,6 +404,34 @@
       </fieldset>
 
       <fieldset>
+        <legend>Videos</legend>
+        <small>YouTube-Videos mit Vorschaubild. Auf der Seite lädt YouTube erst, wenn jemand auf Abspielen klickt.</small>
+        <label>Einleitung <small>Optional, steht über den Videos.</small><textarea name="vid-lead" rows="3">${esc(vids.lead || '')}</textarea></label>
+        <label>Zeile darunter <small>Optional, zum Beispiel „Video und Schnitt: Eric Winderlich“.</small><input name="vid-credit" value="${esc(vids.credit || '')}"></label>
+        ${(vids.items || []).map((vid, i) => `
+          <div class="a-step">
+            <div class="a-step-head">
+              <strong>Video ${i + 1}</strong>
+              <span>
+                <button class="a-btn a-btn-icon" type="button" data-vid-move="${i}" data-dir="-1" ${i === 0 ? 'disabled' : ''} aria-label="Video nach oben">↑</button>
+                <button class="a-btn a-btn-icon" type="button" data-vid-move="${i}" data-dir="1" ${i === vids.items.length - 1 ? 'disabled' : ''} aria-label="Video nach unten">↓</button>
+                <button class="a-btn a-btn-danger" type="button" data-vid-del="${i}">Entfernen</button>
+              </span>
+            </div>
+            <div class="a-mainimg">
+              <img src="${esc(imgUrl('img/videos/' + vid.youtube + '.webp'))}" alt="" width="240" height="135">
+              <a href="https://www.youtube.com/watch?v=${encodeURIComponent(vid.youtube)}" target="_blank" rel="noopener">Auf YouTube ansehen</a>
+            </div>
+            <label>Titel<input name="vid-title-${i}" value="${esc(vid.title)}"></label>
+            <label>Text<textarea name="vid-text-${i}" rows="2">${esc(vid.text)}</textarea></label>
+          </div>`).join('')}
+        <div class="a-addvideo">
+          <label>Neues Video <small>YouTube-Link einfügen, Titel und Vorschaubild holt der Admin selbst.</small><input id="vid-new" type="url" placeholder="https://www.youtube.com/watch?v=…"></label>
+          <button class="a-btn" type="button" id="btn-vid-add">Video hinzufügen</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
         <legend>Datenschutz</legend>
         <label>Ein Satz zusammengefasst<input name="p-summary" value="${esc(p.summary || '')}"></label>
         ${badges.map((b, i) => `<div class="a-iconrow">${iconSelect('b-icon-' + i, b[0])}<input name="b-text-${i}" value="${esc(b[1])}" placeholder="Symbol-Text, leer = weglassen"></div>`).join('')}
@@ -451,6 +480,12 @@
       points: v('p-points').split('\n').map((x) => x.trim()).filter(Boolean),
     });
     if (v('p-link')) app.privacy.link = v('p-link'); else delete app.privacy.link;
+    if (app.videos) {
+      app.videos.lead = v('vid-lead');
+      if (v('vid-credit')) app.videos.credit = v('vid-credit'); else delete app.videos.credit;
+      (app.videos.items || []).forEach((vid, i) => { vid.title = v('vid-title-' + i); vid.text = v('vid-text-' + i); });
+      if (!app.videos.items.length && !app.videos.lead && !app.videos.credit) delete app.videos;
+    }
     updateSavebar();
   }
 
@@ -487,6 +522,51 @@
     }
   }
 
+  function youtubeId(url) {
+    const s = String(url || '').trim();
+    if (/^[\w-]{11}$/.test(s)) return s;
+    const m = s.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  function videoUsedElsewhere(id, exceptApp) {
+    return state.apps.some((a) => a !== exceptApp && ((a.videos || {}).items || []).some((x) => x.youtube === id));
+  }
+
+  async function addVideo(app, url) {
+    const id = youtubeId(url);
+    if (!id) throw new Error('Das ist kein YouTube-Link. Erwartet wird z. B. https://www.youtube.com/watch?v=…');
+    app.videos = app.videos || { items: [] };
+    app.videos.items = app.videos.items || [];
+    if (app.videos.items.some((x) => x.youtube === id)) throw new Error('Dieses Video ist schon drin.');
+    // Titel vorausfüllen (öffentliche oEmbed-Schnittstelle von YouTube)
+    let title = '';
+    try {
+      const r = await fetch('https://www.youtube.com/oembed?format=json&url=' + encodeURIComponent('https://www.youtube.com/watch?v=' + id));
+      if (r.ok) title = (await r.json()).title || '';
+    } catch (e) { /* Titel dann von Hand */ }
+    // Vorschaubild holen, auf 16:9 zuschneiden und lokal ablegen
+    const path = 'img/videos/' + id + '.webp';
+    let exists = false;
+    if (!state.deletions.has(path)) {
+      try { exists = (await fetch('/' + path, { method: 'HEAD', cache: 'no-store' })).ok; } catch (e) { exists = false; }
+    }
+    if (!state.files.has(path) && !exists) {
+      let blob = null;
+      for (const q of ['maxresdefault', 'sddefault', 'hqdefault']) {
+        try {
+          const r = await fetch('https://i.ytimg.com/vi/' + id + '/' + q + '.jpg');
+          if (r.ok) { blob = await r.blob(); break; }
+        } catch (e) { /* nächste Größe */ }
+      }
+      if (!blob) throw new Error('Das Vorschaubild ließ sich nicht laden. Ist das Video öffentlich?');
+      const { img } = await readImage(blob);
+      state.files.set(path, await toWebp(img, { cover: [1280, 720] }));
+      state.deletions.delete(path);
+    }
+    app.videos.items.push({ youtube: id, title, text: '' });
+  }
+
   function newApp() {
     const title = prompt('Name der neuen App:');
     if (!title) return;
@@ -507,6 +587,7 @@
     if (!confirm(app.title + ' wirklich löschen? Das wird erst beim Speichern endgültig.')) return;
     ['img/apps/' + app.id + '.webp', 'img/apps/' + app.id + '-800.webp']
       .concat(imagesOf(app).map((n) => 'img/apps/' + app.id + '/' + n + '.webp'))
+      .concat(((app.videos || {}).items || []).filter((x) => !videoUsedElsewhere(x.youtube, app)).map((x) => 'img/videos/' + x.youtube + '.webp'))
       .forEach((p) => { if (state.files.has(p)) state.files.delete(p); else state.deletions.add(p); });
     state.apps = state.apps.filter((a) => a !== app);
     state.editing = null;
@@ -740,6 +821,9 @@
 
   const form = $('#edit-form');
   form.addEventListener('input', collect);
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.id === 'vid-new') { e.preventDefault(); $('#btn-vid-add').click(); }
+  });
   form.addEventListener('change', (e) => {
     if (e.target.matches('input[type=file]')) { handleUpload(e.target); return; }
     collect();
@@ -765,6 +849,33 @@
       collect();
       const i = Number(t.dataset.stepMove), j = i + Number(t.dataset.dir);
       [app.tour[i], app.tour[j]] = [app.tour[j], app.tour[i]];
+      renderEdit(app.id);
+      return;
+    }
+    if (t.id === 'btn-vid-add') {
+      collect();
+      const input = $('#vid-new');
+      t.disabled = true;
+      addVideo(app, input.value)
+        .then(() => { renderEdit(app.id); toast('Video übernommen. Gespeichert wird erst mit „Speichern und veröffentlichen“.'); })
+        .catch((err) => { toast(err.message, 6000); t.disabled = false; });
+      return;
+    }
+    if (t.dataset.vidDel != null) {
+      collect();
+      const i = Number(t.dataset.vidDel);
+      const [gone] = app.videos.items.splice(i, 1);
+      if (!videoUsedElsewhere(gone.youtube, app)) {
+        const path = 'img/videos/' + gone.youtube + '.webp';
+        if (state.files.has(path)) state.files.delete(path); else state.deletions.add(path);
+      }
+      renderEdit(app.id);
+      return;
+    }
+    if (t.dataset.vidMove != null) {
+      collect();
+      const i = Number(t.dataset.vidMove), k = i + Number(t.dataset.dir);
+      [app.videos.items[i], app.videos.items[k]] = [app.videos.items[k], app.videos.items[i]];
       renderEdit(app.id);
       return;
     }

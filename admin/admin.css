@@ -208,3 +208,7 @@ legend { font-weight: 700; padding: 0 6px; }
   .a-brand { display: none; }
   .a-savebar { border-radius: 16px; }
 }
+
+.a-addvideo { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; border-top: 1px solid var(--line); padding-top: 14px; }
+.a-mainimg a { font-weight: 600; }
+@media (max-width: 640px) { .a-addvideo { grid-template-columns: 1fr; } }
