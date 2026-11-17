@@ -559,13 +559,27 @@
 
   function isoHour(d) { const x = new Date(d); x.setMinutes(0, 0, 0); return x.toISOString(); }
 
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // GoatCounter erlaubt nur wenige Anfragen pro Sekunde: nacheinander abrufen, bei 429 warten und neu versuchen
   async function gc(code, key, path) {
-    const res = await fetch('https://' + code + '.goatcounter.com/api/v0' + path, { headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' } });
-    if (!res.ok) throw new Error(String(res.status));
-    return res.json();
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const res = await fetch('https://' + code + '.goatcounter.com/api/v0' + path, { headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' } });
+      if (res.ok) return res.json();
+      if (res.status === 429 && attempt < 3) {
+        const reset = Number(res.headers.get('X-Rate-Limit-Reset'));
+        await sleep(reset > 0 && reset < 30 ? reset * 1000 + 250 : 1500 * (attempt + 1));
+        continue;
+      }
+      const err = new Error(String(res.status));
+      err.status = res.status;
+      throw err;
+    }
+    throw Object.assign(new Error('429'), { status: 429 });
   }
 
-  async function renderStats() {
+  const STATS_CACHE = 'admin-gc-cache';
+  async function renderStats(force) {
     const body = $('#stats-body');
     const code = lsGet(LS_GC_CODE), key = lsGet(LS_GC_KEY);
     if (!code || !key) {
@@ -577,14 +591,24 @@
     const now = Date.now();
     const range = (days) => '?start=' + encodeURIComponent(isoHour(now - days * 864e5)) + '&end=' + encodeURIComponent(isoHour(now + 36e5));
     try {
-      const [t7, t30, hits, refs] = await Promise.all([
-        gc(code, key, '/stats/total' + range(7)),
-        gc(code, key, '/stats/total' + range(30)),
-        gc(code, key, '/stats/hits' + range(30) + '&limit=10'),
-        gc(code, key, '/stats/toprefs' + range(30) + '&limit=10'),
-      ]);
-      const num = (t) => (t && (t.total_unique ?? t.total ?? 0)).toLocaleString('de-DE');
+      // Zahlen 5 Minuten zwischenspeichern, damit Hin- und Herwechseln keine neuen Abrufe auslöst
+      let data = null;
+      try { data = JSON.parse(sessionStorage.getItem(STATS_CACHE) || 'null'); } catch (e) { data = null; }
+      if (force || !data || data.code !== code || now - data.at > 5 * 60e3) {
+        const t7 = await gc(code, key, '/stats/total' + range(7));
+        await sleep(350);
+        const t30 = await gc(code, key, '/stats/total' + range(30));
+        await sleep(350);
+        const hits = await gc(code, key, '/stats/hits' + range(30) + '&limit=10');
+        await sleep(350);
+        const refs = await gc(code, key, '/stats/toprefs' + range(30) + '&limit=10');
+        data = { code, at: now, t7, t30, hits, refs };
+        try { sessionStorage.setItem(STATS_CACHE, JSON.stringify(data)); } catch (e) { /* egal */ }
+      }
+      const { t7, t30, hits, refs } = data;
+      const num = (t) => Number((t && (t.total_unique ?? t.total)) || 0).toLocaleString('de-DE');
       const rows = (list, name, val) => (list || []).map((x) => `<tr><td>${esc(name(x))}</td><td class="a-num">${esc(val(x))}</td></tr>`).join('') || '<tr><td colspan="2">Noch keine Daten.</td></tr>';
+      const stamp = new Date(data.at).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
       body.innerHTML = `
         <div class="a-kpis">
           <div><span>Besuche, 7 Tage</span><strong>${num(t7)}</strong></div>
@@ -594,12 +618,23 @@
           <table class="a-table"><caption>Beliebteste Seiten (30 Tage)</caption><tbody>${rows(hits.hits, (x) => x.title || x.path, (x) => x.count)}</tbody></table>
           <table class="a-table"><caption>Woher die Besucher kommen</caption><tbody>${rows(refs.stats, (x) => x.name || '(direkt)', (x) => x.count)}</tbody></table>
         </div>
-        <p><a href="${dash}" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter</a></p>`;
+        <p class="a-note">Stand ${stamp} Uhr. <button class="a-link" type="button" id="btn-stats-reload">Neu laden</button> · <a href="${dash}" target="_blank" rel="noopener">Ausführliche Statistik bei GoatCounter</a></p>`;
     } catch (e) {
-      body.innerHTML = `<p>Die Zahlen konnten hier nicht geladen werden (${esc(e.message)}). Das liegt meist am API-Schlüssel oder daran, dass GoatCounter Abrufe von anderen Seiten nicht erlaubt.</p>
-        <p><a class="a-btn a-btn-primary" href="${dash}" target="_blank" rel="noopener">Statistik bei GoatCounter öffnen</a></p>`;
+      const why = e.status === 401 || e.status === 403
+        ? 'GoatCounter lehnt den API-Schlüssel ab. Bitte unter Einstellungen prüfen, ob er vollständig kopiert ist.'
+        : e.status === 429
+          ? 'GoatCounter meldet gerade zu viele Abrufe. Bitte eine Minute warten und dann neu laden.'
+          : e.status === 404
+            ? 'Unter diesem Code gibt es keine Statistik. Bitte den Code unter Einstellungen prüfen.'
+            : 'GoatCounter ist gerade nicht erreichbar (' + esc(e.message) + ').';
+      body.innerHTML = `<p>${why}</p>
+        <p><button class="a-btn" type="button" id="btn-stats-reload">Neu laden</button> <a class="a-btn a-btn-primary" href="${dash}" target="_blank" rel="noopener">Statistik bei GoatCounter öffnen</a></p>`;
     }
   }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'btn-stats-reload') renderStats(true);
+  });
 
   // ------------------------------------------------------------------------
   // Start und Ereignisse
