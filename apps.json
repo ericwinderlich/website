@@ -88,7 +88,7 @@
           "heute"
         ],
         "title": "Was steht heute an?",
-        "text": "Das Dashboard zeigt die Stunden des Tages und die nächste Stunde. Warnungen, zum Beispiel bei vielen Fehlstunden, landen auch hier."
+        "text": "Das Dashboard zeigt die Stunden des Tages, die nächste Stunde und wer gerade auffällt, zum Beispiel wegen vieler Fehlstunden."
       },
       {
         "layout": "split",
@@ -97,7 +97,7 @@
           "noten"
         ],
         "title": "Noten ohne Excel",
-        "text": "Schriftliche und mündliche Noten getrennt, mit eigener Gewichtung und Tendenzen wie 2- oder 3+. Den Schnitt berechnet die App."
+        "text": "Schriftliche und mündliche Noten getrennt, mit eigener Gewichtung und Tendenzen wie 2- oder 3+. Am Beamer bleiben die Noten verborgen, bis du sie einblendest."
       },
       {
         "layout": "split",
@@ -118,7 +118,8 @@
         "title": "Alle Klassen, auch am Handy",
         "text": "Die Übersicht zeigt für jede Klasse Schülerzahl und Notenschnitt. Auf dem Handy funktioniert der Planer genauso."
       }
-    ]
+    ],
+    "group": "unterricht"
   },
   {
     "id": "vokabeltrainer",
@@ -231,7 +232,8 @@
         "title": "Test und Wortliste",
         "text": "Einen Vokabeltest mit Notenschlüssel machen oder als Klassentest ausdrucken. Die Wortliste lässt sich durchsuchen."
       }
-    ]
+    ],
+    "group": "unterricht"
   },
   {
     "id": "vergangenheitstrainer-spanisch",
@@ -334,7 +336,123 @@
         "title": "Der Spickzettel",
         "text": "Die Regeln kurz und mit Beispielen: einmalige Handlungen, neu eintretende Ereignisse, Beschreibungen."
       }
-    ]
+    ],
+    "group": "unterricht"
+  },
+  {
+    "id": "klangheft",
+    "title": "Klangheft",
+    "group": "unterricht",
+    "description": "Musik im Unterricht untersuchen und selbst machen: Teile eines Songs hören und benennen, Songs aus Bausteinen bauen, Beats trommeln und Instrumente ausprobieren. Ab Klasse 6, am Rechner und auf dem iPad.",
+    "category": "education",
+    "audience": [
+      "schueler",
+      "lehrkraefte"
+    ],
+    "status": "Aktiv",
+    "isOpenSource": false,
+    "links": {
+      "web": "https://kulturelle-bildung-lsa.de/klangheft/"
+    },
+    "lastUpdated": "November 2026",
+    "started": "Oktober 2026",
+    "partner": "Ein Angebot von KreaS",
+    "highlights": [
+      [
+        "music-notes",
+        "Musik untersuchen, mit Formschemata"
+      ],
+      [
+        "puzzle-piece",
+        "Song-Baukasten mit Akkorden und Spuren"
+      ],
+      [
+        "cards",
+        "Beatmaker mit Pads"
+      ],
+      [
+        "laptop",
+        "Läuft auch auf dem iPad"
+      ]
+    ],
+    "hero": {
+      "desktop": "start",
+      "phone": "handy"
+    },
+    "tour": [
+      {
+        "layout": "wide",
+        "device": "desktop",
+        "images": [
+          "start"
+        ],
+        "title": "Vier Werkzeuge auf einem Tisch",
+        "text": "Musik untersuchen, Song-Baukasten, Beatmaker und Instrumente. Alles sieht aus wie ausgeschnittenes Tonpapier auf einem Korktisch."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "untersuchen"
+        ],
+        "title": "Musik untersuchen",
+        "text": "Eine Musikdatei oder ein YouTube-Video öffnen, beim Hören mittippen und die Teile benennen: Intro, Strophe, Refrain. Mit Formschemata von Popsong bis Fuge."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "baukasten"
+        ],
+        "title": "Song-Baukasten",
+        "text": "Schlagzeug, Akkorde, Bass und Melodie aus Bausteinen zusammensetzen, im eigenen Tempo und mit eigener Form."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "beatmaker"
+        ],
+        "title": "Beatmaker",
+        "text": "Beats auf Pads trommeln oder ins Raster klicken, aufnehmen und im Song verwenden."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "instrumente"
+        ],
+        "title": "Instrumente ausprobieren",
+        "text": "Schlagzeug, Klavier, Xylophon, Boomwhacker und Ukulele zum Spielen und Kennenlernen, mit Steckbrief und Aufgaben."
+      }
+    ],
+    "privacy": {
+      "summary": "Ohne Anmeldung und ohne Tracking. Musik und Arbeiten bleiben auf dem Gerät.",
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Kein Konto nötig"
+        ],
+        [
+          "laptop",
+          "Arbeiten bleiben auf dem Gerät"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ],
+      "points": [
+        "Musik, Aufnahmen und Arbeiten werden nur im Browser des Geräts gespeichert.",
+        "Beim Öffnen werden keine fremden Server kontaktiert und keine Cookies gesetzt.",
+        "YouTube-Videos laden erst nach einem Klick, über youtube-nocookie.com.",
+        "Nur was du über den Abgabekasten abgibst, geht an den Server von KreaS."
+      ],
+      "link": "https://kulturelle-bildung-lsa.de/klangheft/#datenschutz"
+    },
+    "story": {
+      "problem": ""
+    }
   },
   {
     "id": "englischtrainer",
@@ -447,7 +565,8 @@
         "title": "Test und Wortliste",
         "text": "Einen Vokabeltest mit Notenschlüssel machen oder als Klassentest ausdrucken. Die Wortliste lässt sich durchsuchen."
       }
-    ]
+    ],
+    "group": "unterricht"
   },
   {
     "id": "unterrichtsspiele",
@@ -557,6 +676,206 @@
         "title": "Lückentexte",
         "text": "Verben in der richtigen Form einsetzen und direkt überprüfen."
       }
-    ]
+    ],
+    "group": "unterricht"
+  },
+  {
+    "id": "kreas",
+    "title": "KreaS: Kreativpotential Schule",
+    "group": "kreas",
+    "description": "Die Plattform für kulturelle Bildung an Schulen in Sachsen-Anhalt: Projektideen, Ausflugsziele und Workshops, die Lehrkräfte selbst einreichen können. Mit Konten und einer Verwaltung für das KreaS-Team.",
+    "category": "productivity",
+    "audience": [
+      "lehrkraefte"
+    ],
+    "status": "Produktiv",
+    "isOpenSource": false,
+    "links": {
+      "web": "https://kulturelle-bildung-lsa.de/"
+    },
+    "lastUpdated": "November 2026",
+    "started": "November 2026",
+    "partner": "Für das Projekt Kreativpotential Schule am LISA Sachsen-Anhalt",
+    "highlights": [
+      [
+        "book-open",
+        "Projektideen, Ausflüge und Workshops"
+      ],
+      [
+        "pencil-simple",
+        "Beiträge selbst einreichen"
+      ],
+      [
+        "user-circle",
+        "Konten für Einreichende"
+      ],
+      [
+        "laptop",
+        "Eigene Verwaltung statt WordPress"
+      ]
+    ],
+    "hero": {
+      "desktop": "start",
+      "phone": "handy"
+    },
+    "tour": [
+      {
+        "layout": "wide",
+        "device": "desktop",
+        "images": [
+          "start"
+        ],
+        "title": "Alles für kulturelle Bildung",
+        "text": "Projektideen, Ausflugsziele, Workshops mit Kulturschaffenden, Projektförderung und Fortbildungen an einem Ort."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "projekte"
+        ],
+        "title": "Projektideen zum Nachmachen",
+        "text": "Durchgeführte Schulprojekte, sortiert nach Schulform und Fachbereich."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "ausfluege"
+        ],
+        "title": "Ausflugsziele auf der Karte",
+        "text": "Museen, Denkmäler und andere Lernorte in Sachsen-Anhalt. Die Karte lädt erst, wenn man sie einschaltet."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "einreichen"
+        ],
+        "title": "Beiträge selbst einreichen",
+        "text": "Lehrkräfte reichen eigene Projekte ein, das KreaS-Team prüft sie und schaltet sie frei."
+      }
+    ],
+    "privacy": {
+      "summary": "Konten nur für Einreichende. Karten und Videos laden erst nach Zustimmung.",
+      "badges": [
+        [
+          "user-circle",
+          "Konto nur zum Einreichen"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ],
+        [
+          "prohibit",
+          "Keine fremden Dienste beim Laden"
+        ]
+      ],
+      "points": [
+        "Lesen geht ohne Konto. Wer Beiträge einreicht, meldet sich mit einem Anmeldelink per E-Mail an.",
+        "Beim Öffnen werden keine fremden Server kontaktiert und keine Cookies gesetzt.",
+        "Die Karte mit Ausflugszielen lädt erst nach einem Klick Kartenmaterial von OpenStreetMap."
+      ],
+      "link": "https://kulturelle-bildung-lsa.de/datenschutz/"
+    },
+    "story": {
+      "problem": ""
+    }
+  },
+  {
+    "id": "verleih",
+    "title": "KreaS-Verleih",
+    "group": "kreas",
+    "description": "Schulen und Lernorte in Sachsen-Anhalt leihen sich gegenseitig Instrumente, Technik und Material. Anfragen gehen per E-Mail direkt an die verleihende Schule.",
+    "category": "productivity",
+    "audience": [
+      "lehrkraefte"
+    ],
+    "status": "Produktiv",
+    "isOpenSource": false,
+    "links": {
+      "web": "https://verleih.kulturelle-bildung-lsa.de/"
+    },
+    "lastUpdated": "November 2026",
+    "started": "September 2026",
+    "partner": "Für das Projekt Kreativpotential Schule am LISA Sachsen-Anhalt",
+    "highlights": [
+      [
+        "music-notes",
+        "Instrumente, Technik und Material"
+      ],
+      [
+        "cursor-click",
+        "Mehrere Dinge in einer Anfrage"
+      ],
+      [
+        "book-open",
+        "Suche nach Kategorie und Ort"
+      ],
+      [
+        "user-circle",
+        "Schulen stellen selbst ein"
+      ]
+    ],
+    "hero": {
+      "desktop": "start",
+      "phone": "handy"
+    },
+    "tour": [
+      {
+        "layout": "wide",
+        "device": "desktop",
+        "images": [
+          "start"
+        ],
+        "title": "Ausleihen und verleihen",
+        "text": "Finden, per E-Mail anfragen, abholen. Wer etwas verleihen will, stellt es mit Foto und Ansprechperson ein."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "liste"
+        ],
+        "title": "Nach Kategorie und Ort suchen",
+        "text": "Musikinstrumente, Ton- und Bühnentechnik, Werkzeug und mehr, sortierbar nach Entfernung."
+      },
+      {
+        "layout": "split",
+        "device": "desktop",
+        "images": [
+          "standorte"
+        ],
+        "title": "Alle Standorte",
+        "text": "Jede Schule und jeder Lernort zeigt mit einem Klick seinen kompletten Bestand."
+      }
+    ],
+    "privacy": {
+      "summary": "Stöbern ohne Konto. Anfragen gehen direkt an die verleihende Schule.",
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Stöbern ohne Konto"
+        ],
+        [
+          "envelope-simple",
+          "Anfrage direkt an die Schule"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ],
+      "points": [
+        "Die Gegenstände lassen sich ohne Konto durchsuchen.",
+        "Eine Anfrage geht per E-Mail an die Ansprechperson der verleihenden Schule.",
+        "Beim Öffnen werden keine fremden Server kontaktiert und keine Cookies gesetzt."
+      ],
+      "link": "https://verleih.kulturelle-bildung-lsa.de/datenschutz.php"
+    },
+    "story": {
+      "problem": ""
+    }
   }
 ]

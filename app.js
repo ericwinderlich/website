@@ -329,8 +329,10 @@
           <div class="app-meta">
             ${stand ? `<span class="app-updated">Stand: ${esc(stand)}</span>` : ''}
             <div class="app-actions">
-              <a class="app-btn app-btn-open" href="${esc(url)}" target="_blank" rel="noopener">${icon('arrow-up-right')}App öffnen</a>
-              <a class="app-btn" href="${detail}#nachbauen">${icon('github-logo')}Nachbauen</a>
+              <a class="app-btn app-btn-open" href="${esc(url)}" target="_blank" rel="noopener">${icon('arrow-up-right')}${app.group === 'kreas' ? 'Website öffnen' : 'App öffnen'}</a>
+              ${app.github
+                ? `<a class="app-btn" href="${detail}#nachbauen">${icon('github-logo')}Nachbauen</a>`
+                : `<a class="app-btn" href="${detail}">${icon('arrow-up-right')}Mehr erfahren</a>`}
             </div>
           </div>
         </div>
@@ -344,7 +346,18 @@
     initSectionSpy();
 
     const gridEl = $('#apps-grid');
+    const kreasEl = $('#kreas-grid');
     let state = { apps: [], repos: {} };
+    const inGroup = (g) => (a) => (a.group || 'unterricht') === g;
+
+    // KreaS-Projekte: eigener Bereich, ohne Filter
+    function renderKreas() {
+      if (!kreasEl) return;
+      const list = state.apps.filter(inGroup('kreas'));
+      kreasEl.closest('section').hidden = !list.length;
+      const slots = slotsFor(list.length, false);
+      kreasEl.innerHTML = list.map((a, i) => cardHTML(a, slots[i], i, state.repos)).join('');
+    }
 
     function render(list) {
       if (!list.length) {
@@ -395,7 +408,7 @@
         if (audience === 'all') url.searchParams.delete('fuer');
         else url.searchParams.set('fuer', audience);
         history.replaceState(null, '', url);
-        renderAnimated(state.apps.filter(AUDIENCES[audience]));
+        renderAnimated(state.apps.filter(inGroup('unterricht')).filter(AUDIENCES[audience]));
       });
     });
     tabs[0].parentElement.addEventListener('keydown', (e) => {
@@ -412,7 +425,8 @@
       loadData()
         .then((data) => {
           state = data;
-          render(data.apps.filter(AUDIENCES[audienceFromUrl()]));
+          render(data.apps.filter(inGroup('unterricht')).filter(AUDIENCES[audienceFromUrl()]));
+          renderKreas();
           gridEl.setAttribute('aria-busy', 'false');
         })
         .catch(() => {
@@ -442,7 +456,7 @@
         if (a) a.setAttribute('aria-current', 'true');
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['apps', 'making-of', 'kontakt'].forEach((id) => {
+    ['apps', 'kreas', 'making-of', 'kontakt'].forEach((id) => {
       const el = document.getElementById(id);
       if (el) io.observe(el);
     });
@@ -515,22 +529,23 @@
     const audience = (app.audience || []).map((a) => AUDIENCE_LABEL[a]).filter(Boolean).join(' und ');
     const facts = [
       audience && ['Für', audience],
-      r.created && ['Gestartet', formatDate(r.created, { month: 'long', year: 'numeric' })],
+      (r.created || app.started) && ['Gestartet', r.created ? formatDate(r.created, { month: 'long', year: 'numeric' }) : app.started],
       stand && ['Stand', stand],
       r.commits && ['Änderungen', `${r.commits} Commits`],
     ].filter(Boolean);
 
     return `
       <section class="detail-hero container">
-        <a class="back-link" href="/#apps">${icon('arrow-up-right', 'back-icon')}Alle Apps</a>
+        <a class="back-link" href="${app.group === 'kreas' ? '/#kreas' : '/#apps'}">${icon('arrow-up-right', 'back-icon')}${app.group === 'kreas' ? 'Zurück' : 'Alle Apps'}</a>
         <div class="detail-head">
           <div class="detail-copy">
             ${isWip(app) ? '<p class="detail-wip">in Arbeit</p>' : ''}
             <h1 class="detail-title">${esc(app.title)}</h1>
             <p class="detail-desc">${esc(app.description)}</p>
+            ${app.partner ? `<p class="detail-partner">${esc(app.partner)}</p>` : ''}
             <div class="detail-cta">
-              <a class="btn btn-primary" href="${esc(app.links.web)}" target="_blank" rel="noopener">App öffnen ${icon('arrow-up-right')}</a>
-              <a class="btn btn-secondary" href="#nachbauen">${icon('git-fork')}Nachbauen</a>
+              <a class="btn btn-primary" href="${esc(app.links.web)}" target="_blank" rel="noopener">${app.group === 'kreas' ? 'Website öffnen' : 'App öffnen'} ${icon('arrow-up-right')}</a>
+              ${app.github ? `<a class="btn btn-secondary" href="#nachbauen">${icon('git-fork')}Nachbauen</a>` : ''}
             </div>
             ${app.highlights ? `
             <ul class="hl-list">
@@ -546,7 +561,7 @@
 
       ${app.tour ? `
       <section class="tour container" aria-labelledby="tour-title">
-        <h2 class="section-title" id="tour-title">So sieht sie aus</h2>
+        <h2 class="section-title" id="tour-title">${app.group === 'kreas' ? 'So sieht es aus' : 'So sieht sie aus'}</h2>
         ${tourHTML(app)}
       </section>` : ''}
 
@@ -567,8 +582,10 @@
         <ul class="checklist">
           ${privacy.points.map((p) => `<li>${icon('check')}<span>${esc(p)}</span></li>`).join('')}
         </ul>
+        ${privacy.link ? `<p class="privacy-link"><a href="${esc(privacy.link)}" target="_blank" rel="noopener">Zur vollständigen Datenschutzerklärung</a></p>` : ''}
       </section>
 
+      ${app.github ? `
       <section class="detail-section container" id="nachbauen" aria-labelledby="remix-title">
         <h2 class="section-title" id="remix-title">Nachbauen</h2>
         <p class="remix-lead">Du musst nicht bei null anfangen. Kopier dir meinen Code, lass ihn von einem KI-Agenten für deinen Unterricht anpassen und veröffentliche deine eigene Version kostenlos auf GitHub Pages. Das nennt sich Vibecoding.</p>
@@ -606,11 +623,11 @@
             <button class="btn btn-secondary" type="button" data-copy="#prompt-scratch">${icon('copy')}Prompt kopieren</button>
           </div>
         </details>` : ''}
-      </section>
+      </section>` : ''}
 
       <nav class="detail-more container" aria-label="Weitere Apps">
-        <a class="more-link" href="/app.html?id=${encodeURIComponent(prev.id)}"><span>Vorherige App</span><strong>${esc(prev.title)}</strong></a>
-        <a class="more-link more-next" href="/app.html?id=${encodeURIComponent(next.id)}"><span>Nächste App</span><strong>${esc(next.title)}</strong></a>
+        <a class="more-link" href="/app.html?id=${encodeURIComponent(prev.id)}"><span>${app.group === 'kreas' ? 'Weiteres Projekt' : 'Vorherige App'}</span><strong>${esc(prev.title)}</strong></a>
+        <a class="more-link more-next" href="/app.html?id=${encodeURIComponent(next.id)}"><span>${app.group === 'kreas' ? 'Weiteres Projekt' : 'Nächste App'}</span><strong>${esc(next.title)}</strong></a>
       </nav>`;
   }
 
@@ -631,8 +648,11 @@
         const i = apps.findIndex((a) => a.id === id);
         if (i < 0) { notFound(); return; }
         const app = apps[i];
-        const prev = apps[(i - 1 + apps.length) % apps.length];
-        const next = apps[(i + 1) % apps.length];
+        // Blättern bleibt in der eigenen Gruppe (Unterrichts-Apps oder KreaS)
+        const same = apps.filter((x) => (x.group || 'unterricht') === (app.group || 'unterricht'));
+        const k = same.indexOf(app);
+        const prev = same[(k - 1 + same.length) % same.length];
+        const next = same[(k + 1) % same.length];
         document.title = `${app.title} | Eric Winderlich`;
         const desc = document.querySelector('meta[name="description"]');
         if (desc) desc.setAttribute('content', app.description);

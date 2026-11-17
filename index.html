@@ -15,7 +15,7 @@
 
   <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/style.css?v=52">
+  <link rel="stylesheet" href="/style.css?v=53">
 
   <script>
     // Theme vor dem ersten Rendern setzen, damit nichts aufblitzt
@@ -84,6 +84,7 @@
       </a>
       <nav class="nav-links" aria-label="Hauptnavigation">
         <a href="#apps">Apps</a>
+        <a href="#kreas">KreaS</a>
         <a class="nav-optional" href="#making-of">Making-of</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
@@ -110,7 +111,7 @@
             <span class="line"><span>die mir im Unterricht</span></span>
             <span class="line"><span><span class="circled">fehlen<svg class="pen-circle" viewBox="0 0 220 80" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 44 C 14 20, 70 8, 118 9 C 170 10, 210 22, 206 42 C 202 64, 150 74, 102 72 C 52 70, 10 62, 12 42 C 14 28, 40 16, 72 12"/></svg></span>.</span></span>
           </h1>
-          <p class="hero-sub">Kostenlos, ohne Anmeldung und mit offenem Code. Nutz die Apps direkt oder bau dir deine eigene Version.</p>
+          <p class="hero-sub">Kostenlos und ohne Anmeldung. Bei vielen Apps liegt der Code offen, damit du dir deine eigene Version bauen kannst.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#apps">Zu den Apps</a>
           </div>
@@ -127,8 +128,8 @@
               <img src="/img/apps/vergangenheitstrainer-spanisch-800.webp" srcset="/img/apps/vergangenheitstrainer-spanisch-800.webp 800w, /img/apps/vergangenheitstrainer-spanisch.webp 1280w" sizes="(max-width: 960px) 90vw, 560px" width="1280" height="800" alt="Screenshot des Spanisch-Vergangenheitstrainers mit Übungsmodi">
             </span>
             <span class="stack-card" data-pos="2">
-              <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>spanisch-vokabeln.github.io</span></span>
-              <img src="/img/apps/vokabeltrainer-800.webp" srcset="/img/apps/vokabeltrainer-800.webp 800w, /img/apps/vokabeltrainer.webp 1280w" sizes="(max-width: 960px) 90vw, 560px" width="1280" height="800" alt="Screenshot des Spanisch-Vokabeltrainers mit Auswahl der Klassenstufe">
+              <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>kulturelle-bildung-lsa.de/klangheft</span></span>
+              <img src="/img/apps/klangheft-800.webp" srcset="/img/apps/klangheft-800.webp 800w, /img/apps/klangheft.webp 1280w" sizes="(max-width: 960px) 90vw, 560px" width="1280" height="800" alt="Screenshot von Klangheft mit den vier Werkzeugen auf dem Korktisch">
             </span>
           </button>
           <p class="stack-note" aria-hidden="true">klick mich</p>
@@ -151,6 +152,15 @@
           <div class="app-card skeleton slot-side"></div>
           <div class="app-card skeleton slot-side"></div>
         </div>
+      </div>
+    </section>
+
+    <!-- KREAS -->
+    <section class="apps kreas" id="kreas" aria-labelledby="kreas-title">
+      <div class="container">
+        <h2 class="section-title reveal" id="kreas-title">Für KreaS gebaut</h2>
+        <p class="section-lead reveal">Für das Projekt Kreativpotential Schule am LISA Sachsen-Anhalt habe ich die Plattform und den Verleih gebaut. Auch Klangheft ist ein Angebot von KreaS.</p>
+        <div class="bento" id="kreas-grid" aria-live="polite"></div>
       </div>
     </section>
 
@@ -225,6 +235,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="/app.js?v=52"></script>
+  <script src="/app.js?v=53"></script>
 </body>
 </html>
