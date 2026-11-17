@@ -236,6 +236,111 @@
     "group": "unterricht"
   },
   {
+    "id": "lateintrainer",
+    "title": "Latein-Vokabeltrainer",
+    "group": "unterricht",
+    "description": "Die Lernwörter aus Lektion 1 bis 14 üben: mit Karteikarten, Quiz, Zuordnung, Vokabeltest und Spielen. Funktioniert auch offline.",
+    "category": "education",
+    "audience": [
+      "schueler"
+    ],
+    "status": "Aktiv",
+    "isOpenSource": true,
+    "github": "https://github.com/latein-vokabeln/latein-vokabeln.github.io",
+    "links": {
+      "web": "https://latein-vokabeln.github.io/"
+    },
+    "highlights": [
+      [
+        "book-open",
+        "460 Lernwörter aus 14 Lektionen"
+      ],
+      [
+        "cards",
+        "Karteikarten und Quiz"
+      ],
+      [
+        "game-controller",
+        "Lernspiele mit Highscore"
+      ],
+      [
+        "printer",
+        "Test zum Ausdrucken"
+      ]
+    ],
+    "hero": {
+      "phone": "start"
+    },
+    "tour": [
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "modi",
+          "karte",
+          "karte-offen"
+        ],
+        "title": "Karteikarten, die mitdenken",
+        "text": "Aufdecken, dann ehrlich sagen: gewusst oder noch nicht. Schwierige Wörter kommen öfter dran."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "quiz",
+          "zuordnung"
+        ],
+        "title": "Quiz und Zuordnung",
+        "text": "Vier Antworten zur Auswahl oder Paare verbinden. Abwechslung, damit das Lernen nicht langweilig wird."
+      },
+      {
+        "layout": "split",
+        "device": "phone",
+        "images": [
+          "spiele"
+        ],
+        "title": "Spiele mit Highscore",
+        "text": "Überleben mit drei Leben, gegen die Zeit oder als Vokabel-Serie. Die eigenen Rekorde spornen an."
+      },
+      {
+        "layout": "phones",
+        "device": "phone",
+        "images": [
+          "test",
+          "liste"
+        ],
+        "title": "Test und Wortliste",
+        "text": "Einen Vokabeltest mit Notenschlüssel machen oder als Klassentest ausdrucken. Die Wortliste lässt sich nach Lektionen durchsuchen."
+      }
+    ],
+    "privacy": {
+      "summary": "Kein Konto, keine Anmeldung. Der Lernfortschritt bleibt im Browser.",
+      "badges": [
+        [
+          "user-circle-dashed",
+          "Kein Konto nötig"
+        ],
+        [
+          "laptop",
+          "Fortschritt bleibt im Browser"
+        ],
+        [
+          "eye-slash",
+          "Kein Tracking"
+        ]
+      ],
+      "points": [
+        "Lernstand, Fehlerwörter, Rekorde und die Lektionsauswahl werden nur lokal im Browser gespeichert.",
+        "Beim Öffnen werden keine fremden Server kontaktiert.",
+        "Kein Tracking, keine Werbung."
+      ]
+    },
+    "story": {
+      "problem": "",
+      "prompt": "Baue mir einen Latein-Vokabeltrainer als Web-App für Schüler:innen. Die Lernwörter kommen aus unserem Lateinbuch und sind nach Lektionen sortiert. Ich gebe dir die Listen als Tabelle.\n\nFunktionen:\n1. Lektionen auswählen, auch mehrere auf einmal.\n2. Vokabeln durchblättern und durchsuchen.\n3. Üben mit Karteikarten, Multiple-Choice-Quiz, Eintippen und Zuordnungsspielen.\n4. Ein Vokabeltest mit Note, den ich auch als Klassentest ausdrucken kann.\n5. Schwierige Wörter werden gesammelt und öfter abgefragt.\n6. Der Lernfortschritt wird nur lokal im Browser gespeichert, keine Anmeldung.\n\nBeim Eintippen soll die App lateinische Formen wie „puella, puellae (f)“ fair prüfen. Modern, farbig und fürs Handy gemacht, auch offline nutzbar. Veröffentlichung kostenlos über GitHub Pages."
+    }
+  },
+  {
     "id": "vergangenheitstrainer-spanisch",
     "title": "Spanisch-Vergangenheitstrainer",
     "description": "Meistere die spanischen Vergangenheitszeiten (Indefinido und Imperfecto) mit gezielten, interaktiven Übungen.",

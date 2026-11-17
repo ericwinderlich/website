@@ -5,9 +5,14 @@
     "commits": 322
   },
   "vokabeltrainer": {
-    "pushed": "2026-11-17T16:31:32Z",
+    "pushed": "2026-11-17T16:36:45Z",
     "created": "2026-06-12T11:10:18Z",
-    "commits": 16
+    "commits": 17
+  },
+  "lateintrainer": {
+    "pushed": "2026-11-17T16:37:13Z",
+    "created": "2026-11-17T15:50:32Z",
+    "commits": 5
   },
   "vergangenheitstrainer-spanisch": {
     "pushed": "2026-09-26T18:53:53Z",
