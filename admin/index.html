@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.github.com https://*.goatcounter.com; base-uri 'none'; form-action 'none'">
+  <title>Admin | Eric Winderlich</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/admin/admin.css?v=1">
+</head>
+<body>
+  <header class="a-top">
+    <a class="a-brand" href="/" target="_blank" rel="noopener">ericwinderlich.de</a>
+    <nav class="a-tabs" id="a-tabs" hidden>
+      <button type="button" data-tab="apps" aria-current="true">Apps</button>
+      <button type="button" data-tab="stats">Statistik</button>
+      <button type="button" data-tab="settings">Einstellungen</button>
+    </nav>
+  </header>
+
+  <main class="a-main" id="a-main">
+    <!-- Login -->
+    <section class="a-panel a-login" id="view-login" hidden>
+      <h1>Admin</h1>
+      <p>Hier änderst du die Inhalte deiner Website selbst. Jede Änderung wird als Commit auf GitHub gespeichert und ist etwa eine Minute später online.</p>
+      <form id="login-form" class="a-form" autocomplete="off">
+        <label for="login-token">GitHub-Token</label>
+        <input id="login-token" type="password" required spellcheck="false" placeholder="github_pat_…">
+        <p class="a-error" id="login-error" role="alert" hidden></p>
+        <button class="a-btn a-btn-primary" type="submit">Anmelden</button>
+      </form>
+      <details class="a-help">
+        <summary>So bekommst du einen Token (einmalig, 2 Minuten)</summary>
+        <ol>
+          <li>Auf GitHub <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">einen neuen Fine-grained Token anlegen</a>.</li>
+          <li>Name zum Beispiel „Website-Admin“, Ablauf: 1 Jahr.</li>
+          <li>Unter <strong>Repository access</strong> „Only select repositories“ wählen und nur <strong>ericwinderlich/website</strong> auswählen.</li>
+          <li>Unter <strong>Permissions</strong> bei <strong>Contents</strong> „Read and write“ einstellen. Sonst nichts.</li>
+          <li>Token erzeugen, kopieren und hier einfügen. Dein Browser merkt ihn sich, auf einem neuen Gerät fügst du ihn einmal neu ein.</li>
+        </ol>
+        <p>Der Token bleibt nur in diesem Browser gespeichert und wird nirgendwohin geschickt außer an GitHub.</p>
+      </details>
+    </section>
+
+    <!-- Apps-Liste -->
+    <section class="a-panel" id="view-apps" hidden>
+      <div class="a-head">
+        <h1>Apps und Projekte</h1>
+        <button class="a-btn a-btn-primary" type="button" id="btn-new">+ Neue App</button>
+      </div>
+      <p class="a-note" id="apps-note"></p>
+      <div id="apps-list"></div>
+    </section>
+
+    <!-- Bearbeiten -->
+    <section class="a-panel" id="view-edit" hidden>
+      <div class="a-head">
+        <button class="a-btn" type="button" id="btn-back">‹ Zur Liste</button>
+        <a class="a-btn" id="edit-preview" href="#" target="_blank" rel="noopener">Seite ansehen</a>
+      </div>
+      <form id="edit-form" class="a-form" autocomplete="off"></form>
+    </section>
+
+    <!-- Statistik -->
+    <section class="a-panel" id="view-stats" hidden>
+      <h1>Statistik</h1>
+      <div id="stats-body"></div>
+    </section>
+
+    <!-- Einstellungen -->
+    <section class="a-panel" id="view-settings" hidden>
+      <h1>Einstellungen</h1>
+      <form id="gc-form" class="a-form" autocomplete="off">
+        <h2>GoatCounter</h2>
+        <p>Für die Statistik im Admin. Den Code siehst du in der Adresse deines Dashboards (<code>CODE.goatcounter.com</code>), den API-Schlüssel legst du bei GoatCounter unter deinem Namen, dann „API“ an.</p>
+        <label for="gc-code">Code</label>
+        <input id="gc-code" type="text" spellcheck="false" placeholder="ericwinderlich">
+        <label for="gc-key">API-Schlüssel</label>
+        <input id="gc-key" type="password" spellcheck="false">
+        <button class="a-btn a-btn-primary" type="submit">Speichern</button>
+        <p class="a-ok" id="gc-saved" hidden>Gespeichert.</p>
+      </form>
+      <div class="a-form">
+        <h2>Abmelden</h2>
+        <p>Entfernt Token und GoatCounter-Schlüssel aus diesem Browser.</p>
+        <button class="a-btn" type="button" id="btn-logout">Abmelden</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="a-savebar" id="savebar" hidden>
+    <span id="savebar-text">Ungespeicherte Änderungen</span>
+    <button class="a-btn" type="button" id="btn-discard">Verwerfen</button>
+    <button class="a-btn a-btn-primary" type="button" id="btn-save">Speichern und veröffentlichen</button>
+  </div>
+
+  <div class="a-toast" id="a-toast" role="status" aria-live="polite"></div>
+  <script src="/admin/admin.js?v=1"></script>
+</body>
+</html>
